@@ -1,0 +1,17 @@
+# Python cache and logs
+__pycache__/
+*.pyc
+*.pyo
+*.log
+
+# OS and IDE files
+.DS_Store
+
+# HTML files from report generation
+*.html
+
+# EDA intermediate outputs (but not final PDF report)
+eda_outputs/plots/
+eda_outputs/qq_r2_scores.txt
+eda_outputs/normality_results.txt
+eda_outputs/summary.csv

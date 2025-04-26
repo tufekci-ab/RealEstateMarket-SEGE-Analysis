@@ -1,0 +1,6 @@
+--- Hypothesis Testing ---
+Spearman Correlation Coefficient: 0.4794
+p-value: 0.0000e+00
+
+Conclusion: We reject the null hypothesis.
+There is a statistically significant relationship between SEGE score and real estate prices.
