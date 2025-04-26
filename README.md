@@ -26,7 +26,7 @@ The real estate dataset was enriched by merging scraped property listings with c
 - Listings were **filtered by title deed (tapu) status**. Only properties with either "Kat İrtifakı" (floor servitude) or "Kat Mülkiyeti" (floor ownership) were retained. Properties without official title deed status were excluded to ensure legal certainty and comparability across listings.
 - **New buildings (Sıfır Bina)** were subsequently filtered out. Since newly constructed properties often have inflated prices that do not yet reflect true market dynamics, they were excluded to maintain market consistency.
 - **Outlier Removal:** Data was filtered between the 1st and 99th percentiles for price and area variables to eliminate extreme values.
-- As a result of these cleaning steps, approximately **two-thirds of the original 150,000 listings were removed**. The final analysis was based on around 50,000 high-quality and comparable listings.
+- As a result of these cleaning steps, approximately **a third of the original 150,000 listings were removed**. The final analysis was based on around 100,000 high-quality and comparable listings.
 
 ## Methods
 
