@@ -28,6 +28,15 @@ The real estate dataset was enriched by merging scraped property listings with c
 - **Outlier Removal:** Data was filtered between the 1st and 99th percentiles for price and area variables to eliminate extreme values.
 - As a result of these cleaning steps, approximately **a third of the original 150,000 listings were removed**. The final analysis was based on around 100,000 high-quality and comparable listings.
 
+## Extra Data Collection
+
+To enhance the analytical depth and prepare for future modeling tasks, we developed a second-stage scraper that collects additional features directly from each listing’s detail page, rather than from the summary listing page. This approach enabled the extraction of seven new variables such as heating type, number of bathrooms, number of floors, and property orientation—information that is not consistently available in the listing previews.
+
+This secondary scraper resulted in the addition of over 10,000 new rows of data, significantly enriching the dataset. Due to increased ban risks when accessing listing pages individually, we were not able to revisit the entire dataset. Nonetheless, the extra data serves as a valuable augmentation for subsequent predictive modeling efforts and will be utilized in later phases of the project.
+
+To safely scale the scraping process, the new scraper was executed across multiple Azure-based client machines in parallel, similar to the initial scraping setup. However, these deployment configurations are infrastructure-specific and not tightly coupled with the scraper code itself, so they are not included in the repository. Only the scraper logic is pushed as a single consolidated script to maintain codebase clarity.
+
+
 ## Methods
 
 - Web scraping of real estate listings.
@@ -104,10 +113,17 @@ pip install -r requirements.txt
 
 ## Future Work
 
-- Implement predictive modeling (e.g., Random Forest, XGBoost) to estimate property prices.
-- Apply Deep Learning models for advanced feature extraction and prediction.
-- Extend dataset to include commercial properties, rental prices, and additional socio-economic indicators.
+- **Leverage the enriched dataset** collected via the new detail-page scraper—which added 7 new features and over 10,000 listings—for enhanced predictive modeling in the next phase.
+- **Train machine learning models** (e.g., Random Forest, XGBoost) using both SEGE scores and detailed property-level features to estimate real estate prices with higher accuracy.
+- **Experiment with deep learning techniques** for more advanced feature interactions and nonlinear relationships, especially as the dataset scales.
 
+
+## AI Assistance Disclaimer
+
+GenAI tools were occasionally used to support writing and analysis. All final decisions and implementations were made by the project team.
+
+
+---
 ---
 
 This project lays the foundation for understanding socio-economic impacts on real estate pricing and sets the stage for more advanced modeling efforts.
