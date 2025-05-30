@@ -6,3 +6,6 @@ scipy
 statsmodels
 fpdf
 selenium
+xgboost
+hyperopt
+joblib

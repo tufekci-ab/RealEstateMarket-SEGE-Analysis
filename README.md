@@ -64,21 +64,64 @@ A thorough exploratory data analysis was conducted to better understand the unde
   - **Spearman Correlation Coefficient:** ~0.4371
   - **p-value:** < 0.001
 - **Conclusion:** The null hypothesis (H₀) was rejected. There is a statistically significant positive relationship between SEGE scores and real estate prices.
+- SEGE scores are moderately and positively associated with real estate prices.
+- Districts with higher socio-economic development tend to have more expensive properties, controlling for basic listing features.
+
+
+## Machine Learning Phase
+
+In the final stage of the project, a machine learning model was developed to predict real estate prices using both SEGE scores and enriched listing-level attributes collected via a detail-page scraper.
+
+### Models Tried
+
+- **Random Forest Regressor**  
+  Initially used for its interpretability and strong performance on structured data.  
+  **Observation:** Tended to overfit the training data despite parameter tuning efforts. Performance degraded on unseen data.
+
+- **XGBoost Regressor**  
+  Chosen as the final model due to better generalization and robustness to overfitting.
+
+### Features Used
+
+- SEGE score  
+- Net area (m²)  
+- Number of rooms  
+- Number of bathrooms  
+- Heating type  
+- Building age  
+- Total number of floors  
+- Orientation (e.g., south-facing)
+
+### Scripts
+
+- **Model training:** `src/final_model.py`  
+- **Hyperparameter tuning:** `src/hyperopt.py`  
+- **Evaluation output:** `ML Model Insights.html`  
+- **Serialized model file:** `trained_model.pkl`
 
 ## Project Structure
 
 ```
 RealEstateMarket-SEGE-Analysis/
-├── data/                      # Raw scraped data and SEGE scores
-├── eda_outputs/              # EDA outputs: histograms, QQ plots, summaries
-├── hypothesis_outputs/       # Result of hypothesis test
-├── src/                      # All Python scripts (EDA, PDF, Hypothesis, etc.)
-├── analysis_ready_data.csv   # Final cleaned dataset
-├── EDA_Report.pdf            # Final PDF report with all visuals
-├── run_all.bat               # One-click execution script
-├── requirements.txt          # Python dependencies
-├── .gitignore
+├── data/                          # Raw data, SEGE scores
+├── eda_outputs/                  # Histograms, plots
+├── hypothesis_outputs/           # Hypothesis test results
+├── src/                          # All Python scripts (EDA, PDF, Modeling, etc.)
+│   ├── EDA-Calculator.py
+│   ├── final_model.py
+│   ├── hyperopt.py
+│   ├── hypothesis-tester.py
+│   ├── PDF-Maker.py
+│   ├── processBeforeEDA.py
+│   └── merge-extras-with-previous.py
+├── analysis_ready_data.csv       # Cleaned dataset for modeling
+├── trained_model.pkl             # Serialized trained XGBoost model
+├── ML Model Insights.html        # Summary + visualizations of model performance
+├── EDA_Report.html               # EDA report with plots and summaries
+├── run_all.bat                   # One-click script to execute pipeline
+├── requirements.txt              # Python packages
 └── README.md
+
 ```
 
 ## How to Run
@@ -113,9 +156,15 @@ pip install -r requirements.txt
 
 ## Future Work
 
-- **Leverage the enriched dataset** collected via the new detail-page scraper—which added 7 new features and over 10,000 listings—for enhanced predictive modeling in the next phase.
-- **Train machine learning models** (e.g., Random Forest, XGBoost) using both SEGE scores and detailed property-level features to estimate real estate prices with higher accuracy.
-- **Experiment with deep learning techniques** for more advanced feature interactions and nonlinear relationships, especially as the dataset scales.
+- **Retrain with enriched data:** Incorporate the 10,000+ listings enriched via the detail-page scraper, which includes 7 additional features (e.g., heating type, bathroom count, orientation) to improve model complexity and accuracy.
+
+- **Extend modeling efforts:** Evaluate and compare advanced machine learning models (e.g., Random Forest, XGBoost, LightGBM) using a wider set of listing-level and regional features. Focus on generalization and cross-validation stability.
+
+- **Control for time effects:** Introduce temporal data (e.g., date of listing, inflation, interest rates) to study market dynamics over time and detect temporal patterns in price changes.
+
+## GPU Support
+
+If you wish to train models using GPU acceleration, ensure that the appropriate CUDA drivers and toolkit (e.g., CUDA 11.7+) are installed on your system. The code will automatically utilize the GPU if available.
 
 
 ## AI Assistance Disclaimer
